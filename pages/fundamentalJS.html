@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Example Fundamental Javascript</title>
+</head>
+<body>
+	<center><h1>DIBALIK LAYAR INI TERDAPAT KODE KODE FUNDAMENTAL JAVASCRIPT</h1></center>
+	<script>
+		 /* -- CODE STRUCTURE -- */
+		alert('HALO DUNIA, SELAMAT DATANG DI SESI CODE STRUCTURE !');
+		
+		// STATEMENT
+		console.log('ini statement');
+		alert('sampe proses statement nih!')
+
+		// KOMENTAR
+		// ini adalah komentar 1 baris
+		/* ini adalah komentar 
+		multi 
+		baris */
+		console.log('ini komentar');
+		alert('statement terlewati dan sekarang sudah sampai di proses komentar');
+
+		/* -- JAVASCRIPT VARIABLES -- */
+		alert('HALO DUNIA, SELAMAT DATANG DI SESI JAVASCRIPT VARIABLES !');
+
+		// macam macam variable
+		var name = 'M. Arif Mardhavi';
+		let id = 4883551;
+		const alamat = 'Surabaya';
+
+		console.log('sampe di proses macam macam variable')
+
+
+		/* -- DATA TYPES -- */
+		alert('HALO DUNIA, SELAMAT DATANG DI SESI DATA TYPES !');
+
+		console.log("Arkatama" + 1);
+		console.log("Multi Solusindo" + (2*5));
+		console.log(NaN * 3 )
+
+		// number
+		const bigInt = 1234567890123456789012345678901234567890;
+
+		// string
+		const nama1 = "Arkatama";
+		const nama2 = 'Arkatama';
+		const nama3 = `Arkatama`;
+
+		/* -- OPERASI ARITMATIKA -- */
+        console.log('ini Aritmatika');
+        let a = 8;
+        let b = 2;
+
+        let penjumlahan = a + b;
+        let pengurangan = a - b;
+        let perkalian = a * b;
+        let pembagian = a / b;
+
+        console.log(penjumlahan);
+        console.log(pengurangan);
+        console.log(perkalian);
+        console.log(pembagian);
+
+
+        /* -- ASSIGNMENT OPERATOR -- */
+        console.log('ini Assignment');
+        let aasd = 20;
+        aasd += 5;
+        console.log(aasd);
+
+
+        // Do While
+        console.log('ini Do While');
+        let aqwe = 0;
+        do {
+            console.log(`ini baris ke ${aqwe}`);
+            aqwe+=1;
+        } while (aqwe < 5);
+
+
+        // For
+        console.log('ini Perulangan dengan for');
+        let ter = 0;
+        for(let ter = 0 ; ter < 5 ; ter++) {
+            console.log(`ini baris ke ${ter}`)
+        }
+
+
+        // If Else
+        console.log('ini If Else');
+        let nilai = 70;
+        if ((nilai >=80) && (nilai <=100)) {
+            console.log("indeks nilai A");
+        } else if ((nilai >=70) && (nilai <=79))
+        {
+            console.log("indeks nilai B");
+        } else
+        {
+            console.log("indeks nilai C");
+        }
+
+
+        // Perbandingan
+        console.log('ini Perbandingan');
+        let a123 = 22;
+        console.log((a123 % 2) == 0 ? 'Genap' : 'Ganjil');
+
+
+        // Switch
+        console.log('ini Switch')
+        let warna = "red";
+
+        switch (warna){
+            case "black" :
+                console.log ("this is black color");
+                break;
+            case "red" :
+                console.log ("this is red color");
+                break;
+            case "green" :
+                console.log ("this is green color");
+                break;
+        }
+
+        // function
+        console.log('ini function')
+        function salam() {
+        	console.log('halo dunia,sekarang aku berada di dalam function')
+        }
+        salam();
+
+        let salam1 = function () {
+        	console.log('halo dunia,sekarang aku berada di dalam function expresion')
+        }
+        salam1();
+
+        let salampndk = () => {console.log('halo dunia,sekarang aku berada di dalam function arrow suimpel')}
+        let salampndkbgt = () => console.log('halo dunia,sekarang aku berada di dalam function arrow suimpel banget')
+        salampndk();
+        salampndkbgt();
+	</script>
+</body>
+</html>
