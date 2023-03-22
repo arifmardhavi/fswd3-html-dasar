@@ -60,22 +60,23 @@
 		}
 		function saveTodos() {
 			localStorage.setItem("todos", JSON.stringify(todos));
-			}
-			todoForm.addEventListener("submit", (event) => {
-			event.preventDefault();
-			const todoInput = todoForm.querySelector("#todo-input");
-			const todoText = todoInput.value.trim();
-			if (todoText) {
-			todos.push({
-			text: todoText,
-			done: false,
-			});
-			saveTodos();
-			renderTodos();
-			todoInput.value = "";
-			}
-			});
-			renderTodos();
+		}
+		
+		todoForm.addEventListener("submit", (event) => {
+		event.preventDefault();
+		const todoInput = todoForm.querySelector("#todo-input");
+		const todoText = todoInput.value.trim();
+		if (todoText) {
+		todos.push({
+		text: todoText,
+		done: false,
+		});
+		saveTodos();
+		renderTodos();
+		todoInput.value = "";
+		}
+		});
+		renderTodos();
 	</script>
 </body>
 </html>
