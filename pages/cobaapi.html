@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>coba api</title>
+</head>
+<body>
+	<form method="post" action="" id="form" >
+		<input type="text" name="todo" id="todos">
+		<button type="submit">submit</button>
+	</form>
+	<div id="listplace" >
+		
+	</div>
+	<script>
+		const listplace = document.getElementById("listplace");
+		const forms = document.getElementById("form");
+		let todoapis = "https://crudcrud.com/api/88e09fd489994305b0bc30e927b00999/todo";
+
+		// read
+		function getapi() {
+			listplace.innerHTML = '';
+			fetch(todoapis).then((response) => response.json()).then((res) => {
+				console.log(res);
+				res.forEach((todo,index) => {
+					const resItem = document.createElement('div');
+					resItem.innerHTML = `<p> id : ${todo._id} | text : ${todo.text} </p> | <button type="button" onclick="deleted('${todo._id}')">delete</button>` ;
+					listplace.appendChild(resItem);
+				})
+			});
+		}
+
+		// create
+		forms.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const todoInput = forms.querySelector("#todos").value;
+			// alert(todoInput);
+			let data = {
+				text : todoInput,
+				done : false
+			}
+			console.log(JSON.stringify(data));
+			let fetchOption = {
+				method: "POST",
+			    headers: {
+			      "Content-Type": "application/json",
+			    },
+				body : JSON.stringify(data)
+			}
+			fetch(todoapis, fetchOption)
+			.then((res) => {
+				forms.querySelector("#todos").value = "";
+				getapi();
+			});
+		})
+
+		// delete
+		function deleted(id) {
+			alert(id);
+			console.log(id);
+			let link = `${todoapis}/${id}`;
+			let fetchOption = {
+				method : 'DELETE'
+			}
+			fetch(link,fetchOption).then((res) => getapi());
+		}
+
+
+		getapi();
+
+	</script>
+</body>
+</html>
