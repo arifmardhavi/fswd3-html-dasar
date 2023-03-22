@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Todo List</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+	<header class="bg-primary py-5" >
+		<h1 class="text-center text-white">TODO LIST</h1>
+	</header>
+	<div class="container-fluid">
+		<div class="container" >
+			<div class="row my-2 ">
+				<form method="post" action="" id="form">
+					<div class="input-group mb-3">
+					 	<input type="text" name="todo" id="todos" class="form-control" placeholder="Add Your Todo..." aria-label="todo-input" aria-describedby="todo-input">
+					  	<button class="btn btn-primary col-md-3" type="submit">ADD</button>
+					</div>
+				</form>
+			</div>
+			<div class="row" >
+				<ul class="list-group col-md-12" id="todo-list">
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						<div class="form-check">
+							<label class="form-check-label" for="todo-checkbox-0">satu</label>
+						</div>
+						<button type="button" class="close btn btn-danger" aria-label="Delete">
+							<span aria-hidden="true">×</span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script>
+		const forms = document.getElementById("form");
+		const listplace = document.getElementById("todo-list");
+		let todoapis = "https://crudcrud.com/api/88e09fd489994305b0bc30e927b00999/todo";
+
+		// read
+		function getapi() {
+			listplace.innerHTML = '';
+			fetch(todoapis).then((response) => response.json()).then((res) => {
+				console.log(res);
+				res.forEach((todo,index) => {
+					const resItem = document.createElement('li');
+					resItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+					resItem.innerHTML = 
+					`	<div class="form-check">
+							<label class="form-check-label">${todo.text}</label>
+						</div>
+						<button type="button" onclick="deleted('${todo._id}')" class="close btn btn-danger" aria-label="Delete">
+							<span aria-hidden="true">×</span>
+						</button>` ;
+					listplace.appendChild(resItem);
+				})
+			});
+		}
+
+		// create
+		forms.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const todoInput = forms.querySelector("#todos").value;
+			let data = {
+				text : todoInput,
+				done : false
+			}
+			console.log(JSON.stringify(data));
+			let fetchOption = {
+				method: "POST",
+			    headers: {
+			      "Content-Type": "application/json",
+			    },
+				body : JSON.stringify(data)
+			}
+			fetch(todoapis, fetchOption)
+			.then((res) => {
+				forms.querySelector("#todos").value = "";
+				getapi();
+			});
+		})
+
+		// delete
+		function deleted(id) {
+			let link = `${todoapis}/${id}`;
+			let response = confirm("Apakah Anda Yakin Ingin Menghapus Data Ini ?");
+			if (response){
+				let fetchOption = {
+					method : 'DELETE'
+				}
+				fetch(link,fetchOption).then((res) => getapi());
+			}else{
+				alert("Oke Aman, datamu tidak terhapus ");
+			}
+		}
+
+		getapi();
+
+	</script>
+</body>
+</html>
